@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MQTTClientprojectFinal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/circle.css">
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/loginstyle.css">
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+</head>
+
+<body>
+    <div class="main-div">
+
+        <div id="resetPassword_div" class="wrapper fadeInDown">
+            <div id="Contenresetpass" class="formContent">
+                <!-- Tabs Titles -->
+                <h2 class="active"> Forgot Password </h2>
+
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="img/fp_icon.png" />
+                </div>
+
+                <!-- Login Form -->
+                <form>
+                    <input type="text" id="fpusername" class="fadeIn second" placeholder="email">
+                    <input type="button" value="Reset Password" onclick="sendResetEmail()"
+                        class="pointer fadeIn second">
+                    <input type="button" value="Back <<" onclick="signinLayout()" class="pointer fadeIn second">
+                </form>
+
+
+            </div>
+        </div>
+
+        <div id="login_div" class="wrapper fadeInDown">
+            <div id="Content" class="formContent">
+                <!-- Tabs Titles -->
+                <h2 class="pointer active"> Sign In </h2>
+                <h2 class="pointer underlineHover" href="#" onclick="signupLayout()"> Sign Up </h2>
+
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <img src="img/icon_home.png" id="icon" />
+                </div>
+
+                <!-- Login Form -->
+                <form>
+                    <input type="text" id="username" class="fadeIn second" placeholder="email">
+                    <input type="Password" id="password" class="fadeIn third" placeholder="password">
+                    <input type="button" value="Log In" onclick="login()" class="pointer fadeIn second">
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <a class="underlineHover fadeIn second" href="#" onclick="forgotPassword()">Forgot Password?</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="signup_div" class="wrapper">
+            <div id="Content" class="formContent">
+                <!-- Tabs Titles -->
+                <h2 class="pointer underlineHover" href="#" onclick="signinLayout()"> Sign In </h2>
+                <h2 class="pointer active"> Sign Up </h2>
+                <!-- Icon -->
+                <div class="">
+                    <img src="img/signup_icon.png" id="icon" />
+                </div>
+
+                <!-- Login Form -->
+                <form>
+                    <input type="text" id="signUpUsername" placeholder="email">
+                    <input type="Password" id="signUpPassword" placeholder="password">
+                    <input type="text" id="signUpcode" placeholder="code">
+                    <input type="button" value="Sign Up" onclick="signup()" class="pointer ">
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <a class="underlineHover fadeIn first" href="#" onclick="forgotPassword()">Forgot Password?</a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="user_div" class="loggedin-div fadeInDown">
+            <h2 class="underlineHover" id="hder">DASHBOARD IoT final project</h2>
+            <h2 id="connectStatus"></h2>
+            <h2 id="device" class="active fadeIn third">No Control Device</h2>
+
+            <div id="sensor" class="">
+                <div id="temperaturesensor">
+                    <div id="progressTem" class="c100 p0 orange">
+                        <span id="temNumber">--</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="humiditysensor">
+                    <div id="progressHum" class="c100 p0 green">
+                        <span id="humNumber">--</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="controler" class="">
+                <div id="controler12">
+                    <div id="pubRelay1" class="card 1">
+                        <div class="card_image">
+                            <img id="relay1img" src="img/light_off.png" />
+                        </div>
+                        <div class="card_title title-white">
+                            <p>RELAY 1</p>
+                        </div>
+                        <div class="card_status title-white">
+                            <p id="rl1status">OFF</p>
+                        </div>
+                    </div>
+
+                    <div id="pubRelay3" class="card 2">
+                        <div class="card_image">
+                            <img id="relay3img" src="img/light_off.png" />
+                        </div>
+                        <div class="card_title title-white">
+                            <p>RELAY 3</p>
+                        </div>
+                        <div class="card_status title-white">
+                            <p id="rl3status">OFF</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="controler34">
+                    <div id="pubRelay2" class="card 3">
+                        <div class="card_image">
+                            <img id="relay2img" src="img/light_off.png" />
+                        </div>
+                        <div class="card_title">
+                            <p>RELAY 2</p>
+                        </div>
+                        <div class="card_status title-white">
+                            <p id="rl2status">OFF</p>
+                        </div>
+                    </div>
+
+                    <div id="pubRelay4" class="card 4">
+                        <div class="card_image">
+                            <img id="relay4img" src="img/light_off.png" />
+                        </div>
+                        <div class="card_title title-black">
+                            <p>RELAY 4</p>
+                        </div>
+                        <div class="card_status title-white">
+                            <p id="rl4status">OFF</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <button id="logout" class="button fadeIn third" onclick="logout()">LOG OUT</button>
+        </div>
+
+    </div>
+    <script src="js/mqttws31.js" type="text/javascript"></script>
+    <script src="js/mqtt.js" type="text/javascript"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC3aa-rsALy210JvQoU2GPfs-AS0YEwuCk",
+            authDomain: "myiot-e34c0.firebaseapp.com",
+            databaseURL: "https://myiot-e34c0.firebaseio.com",
+            projectId: "myiot-e34c0",
+            storageBucket: "myiot-e34c0.appspot.com",
+            messagingSenderId: "335766037264"
+        };
+        firebase.initializeApp(config);
+        var db = firebase.firestore();
+    </script>
+    <script src="js/loginActivity.js" type="text/javascript"></script>
+
+</body>
+
+</html>

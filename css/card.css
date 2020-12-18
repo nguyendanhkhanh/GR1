@@ -1,0 +1,71 @@
+.pointer {
+    cursor: pointer;
+}
+
+.card {
+    margin: 30px auto;
+    width: 200px;
+    background-color: #4db53c;
+    height: 110px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.card .card_image {
+    display: block;
+    margin-left: 50px;
+    margin-top: 15px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.card .card_image img {
+    display: block;
+    margin-top: 15px;
+    margin-left: 50px;
+    width: fit-content;
+    height: fit-content;
+    object-fit: cover;
+}
+
+.card .card_title {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: -100px;
+}
+
+.card .card_status {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.card:hover {
+    transform: scale(0.97, 0.97);
+    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+}
+
+.card:active {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+}
+
+.title-white {
+    color: white;
+}
+
+.title-black {
+    color: black;
+}
+
+@media all and (max-width: 500px) {
+    .card-list {
+        /* On small screens, we are no longer using row direction but column */
+        flex-direction: column;
+    }
+}
